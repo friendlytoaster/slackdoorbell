@@ -1,0 +1,53 @@
+﻿<Page
+    x:Class="SlackDoorbell.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SlackDoorbell"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+	<Page.Resources>
+		<Color x:Key="doorbellBlueColor">#FF00AEEF</Color>
+		<Color x:Key="doorbellGreyColor">#FF616365</Color>
+		<SolidColorBrush x:Key="DoorbellBlueBrush" Color="{StaticResource doorbellBlueColor}"/>
+		<SolidColorBrush x:Key="DoorbellGreyBrush" Color="{StaticResource doorbellGreyColor}"/>
+	</Page.Resources>
+
+	<Grid x:Name="RootLayout" Background="{StaticResource DoorbellBlueBrush}">
+		<StackPanel x:Name="stackPanel" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20" MaxWidth="900">
+			<StackPanel.RenderTransform>
+				<TranslateTransform x:Name="transform"/>
+			</StackPanel.RenderTransform>
+			<TextBlock x:Name="titleLabel" 
+					   Text="Welcome!" 
+					   Foreground="#FFFFFF" 
+					   FontSize="128"
+					   HorizontalAlignment="Center"/>
+			<TextBlock x:Name="textLabel"
+					   Text="Press the button on the counter to the left, and somebody will be here to help you shortly." 
+					   Margin="20"
+					   Foreground="#FFFFFF" 
+					   FontSize="52"
+					   HorizontalAlignment="Center"
+					   TextWrapping="WrapWholeWords"/>
+			<Button x:Name="ringButton" Content="Ring Bell" HorizontalAlignment="Center" Click="Button_Click" Margin="40"/>
+		</StackPanel>
+
+		<TextBlock x:Name="timeLabel" 
+				   Text="2:35 PM" 
+				   Foreground="#FFFFFF" 
+				   FontSize="54"
+				   Margin="10"
+				   Visibility="Collapsed"
+				   HorizontalAlignment="Right"
+				   VerticalAlignment="Bottom"/>
+
+		<MediaElement x:Name="SoundPlayer" 
+					  Volume="1"
+					  Source="Assets/doorbell.wma"
+					  AutoPlay="False"
+					  MediaFailed="SoundPlayer_MediaFailed" 
+					  MediaEnded="SoundPlayer_MediaEnded"/>
+	</Grid>
+</Page>
